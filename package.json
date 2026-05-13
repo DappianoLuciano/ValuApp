@@ -1,0 +1,61 @@
+{
+  "name": "ml-provincia-app",
+  "version": "1.0.0",
+  "description": "Aplicación para enriquecer facturas SKY con provincias de MercadoLibre",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && node start-electron.js .\"",
+    "build": "vite build",
+    "electron:build": "vite build && electron-builder",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "vite",
+    "excel",
+    "mercadolibre"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "cross-env": "^10.1.0",
+    "electron": "^33.0.2",
+    "electron-builder": "^24.9.1",
+    "vite": "^5.1.0",
+    "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "xlsx": "^0.18.5"
+  },
+  "build": {
+    "appId": "com.sky.ml-provincia",
+    "productName": "ML Provincia",
+    "publish": null,
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.business"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    }
+  }
+}

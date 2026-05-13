@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "PowerShell(Stop-Process -Name node -Force -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Name electron -Force -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Name node,electron -Force -ErrorAction SilentlyContinue)",
+      "Bash(./node_modules/.bin/electron test-electron.js)",
+      "Bash(./node_modules/.bin/electron .)",
+      "Bash(\"./node_modules/electron/dist/electron.exe\" .)",
+      "Bash(unset ELECTRON_RUN_AS_NODE)",
+      "Bash(env)",
+      "Bash(chmod +x run-electron.sh)"
+    ]
+  }
+}
