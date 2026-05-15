@@ -1,5 +1,5 @@
 {
-  "name": "ml-provincia-app",
+  "name": "zonaml-app",
   "version": "1.0.0",
   "description": "Aplicación para enriquecer facturas SKY con provincias de MercadoLibre",
   "main": "electron/main.js",
@@ -25,6 +25,9 @@
     "cross-env": "^10.1.0",
     "electron": "^33.0.2",
     "electron-builder": "^24.9.1",
+    "electron-icon-maker": "^0.0.5",
+    "png2icons": "^2.0.1",
+    "sharp": "^0.34.5",
     "vite": "^5.1.0",
     "wait-on": "^7.2.0"
   },
@@ -34,23 +37,29 @@
     "xlsx": "^0.18.5"
   },
   "build": {
-    "appId": "com.sky.ml-provincia",
-    "productName": "ML Provincia",
+    "appId": "com.zonaml.app",
+    "productName": "ZonaML",
     "publish": null,
     "mac": {
+      "icon": "assets/icon.icns",
       "target": [
         {
           "target": "dmg",
-          "arch": ["universal"]
+          "arch": [
+            "universal"
+          ]
         },
         {
           "target": "zip",
-          "arch": ["universal"]
+          "arch": [
+            "universal"
+          ]
         }
       ],
       "category": "public.app-category.business"
     },
     "win": {
+      "icon": "assets/icon.ico",
       "target": [
         "nsis",
         "zip"

@@ -5,9 +5,21 @@ const fs = require('fs');
 let mainWindow;
 
 function createWindow() {
+  // Configurar ícono según la plataforma
+  let iconPath;
+  if (process.platform === 'darwin') {
+    iconPath = path.join(__dirname, '../assets/icon.icns');
+  } else if (process.platform === 'win32') {
+    iconPath = path.join(__dirname, '../assets/icon.ico');
+  } else {
+    iconPath = path.join(__dirname, '../assets/icon-256x256.png');
+  }
+
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
+    title: 'ZonaML',
+    icon: iconPath,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,

@@ -1,0 +1,56 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pinGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE600;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFC800;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dx="0" dy="4" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="#1a1a2e"/>
+
+  <!-- Map Pin Shape with Shadow -->
+  <g filter="url(#shadow)">
+    <!-- Pin Body -->
+    <path d="M 256 80
+             C 310 80, 354 124, 354 178
+             C 354 220, 330 260, 256 380
+             C 182 260, 158 220, 158 178
+             C 158 124, 202 80, 256 80 Z"
+          fill="url(#pinGradient)"
+          stroke="#1a1a2e"
+          stroke-width="4"/>
+
+    <!-- Pin Point -->
+    <ellipse cx="256" cy="380" rx="20" ry="8" fill="#1a1a2e" opacity="0.3"/>
+  </g>
+
+  <!-- Inner Circle for Letters -->
+  <circle cx="256" cy="178" r="65" fill="#1a1a2e" opacity="0.85"/>
+
+  <!-- ZML Text -->
+  <text x="256" y="207"
+        font-family="'Arial Black', 'Helvetica', sans-serif"
+        font-size="56"
+        font-weight="900"
+        fill="white"
+        text-anchor="middle"
+        letter-spacing="-2">ZML</text>
+
+  <!-- Highlight Effect on Pin -->
+  <ellipse cx="240" cy="140" rx="30" ry="25"
+           fill="white"
+           opacity="0.15"
+           transform="rotate(-25 240 140)"/>
+</svg>
