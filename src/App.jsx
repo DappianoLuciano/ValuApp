@@ -212,17 +212,31 @@ function App() {
 
       // Generar archivo
       const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-      const blob = new Blob([wbout], { type: 'application/octet-stream' });
 
-      // Descargar archivo
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'SKY_con_Provincia.xlsx';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
+      // Si estamos en Electron, usar diálogo nativo
+      if (window.electronAPI && window.electronAPI.saveFileDialog) {
+        const filePath = await window.electronAPI.saveFileDialog('SKY_con_Provincia.xlsx');
+
+        if (filePath) {
+          const result = await window.electronAPI.writeFile(filePath, wbout);
+          if (result.success) {
+            alert('Archivo guardado exitosamente');
+          } else {
+            setError(`Error al guardar: ${result.error}`);
+          }
+        }
+      } else {
+        // Fallback para navegador web
+        const blob = new Blob([wbout], { type: 'application/octet-stream' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'SKY_con_Provincia.xlsx';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }
 
     } catch (err) {
       console.error('Error exportando archivo:', err);

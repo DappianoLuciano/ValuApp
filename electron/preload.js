@@ -4,4 +4,5 @@ const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('electronAPI', {
   openFileDialog: (filters) => ipcRenderer.invoke('dialog:openFile', filters),
   saveFileDialog: (defaultPath) => ipcRenderer.invoke('dialog:saveFile', defaultPath),
+  writeFile: (filePath, buffer) => ipcRenderer.invoke('file:write', filePath, buffer),
 });

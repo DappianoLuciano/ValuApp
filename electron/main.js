@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
+const fs = require('fs');
 
 let mainWindow;
 
@@ -68,4 +69,14 @@ ipcMain.handle('dialog:saveFile', async (event, defaultPath) => {
     return result.filePath;
   }
   return null;
+});
+
+// IPC handler para escribir archivo
+ipcMain.handle('file:write', async (event, filePath, buffer) => {
+  try {
+    fs.writeFileSync(filePath, Buffer.from(buffer));
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
 });
